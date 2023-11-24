@@ -43,7 +43,6 @@ public class Main {
 				
 				try (ResultSet rs = ps.executeQuery()) {
 					
-					int rowCounter = 0;
 					System.out.println("ID" + "\t   " + "COUNTRY" + "\t     " + "REGION" + "\t        " + "CONTINENT");
 					while(rs.next()) {
 						
@@ -53,8 +52,6 @@ public class Main {
 						final String CONTINENT_NAME = rs.getString(4);
 						
 						System.out.println("[" + COUNTRY_ID + "] " + "\t   " + COUNTRY_NAME + "\t     " + REGION_NAME + "\t" + CONTINENT_NAME);
-						 
-						rowCounter++;
 					}
 					
 					System.out.println("Choose a country id: ");
@@ -104,5 +101,6 @@ public class Main {
 			System.out.println("Error in db: " + e.getMessage());
 			
 		}
+		s.close();
 	}
 }
