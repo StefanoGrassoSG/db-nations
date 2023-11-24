@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 	
@@ -70,7 +72,7 @@ public class Main {
 		                ps2.setInt(1, idInt);
 
 		                try (ResultSet rss = ps2.executeQuery()) {
-		                	List<String> languages = new ArrayList<>();
+		                	Set<String> languages = new HashSet<>();
 		                	String country_name = null;
 		                	int year = 0;
 		                	int population = 0;
