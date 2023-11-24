@@ -19,6 +19,12 @@ public class Main {
 
 	private static void queryTest() {
 		
+		Scanner s = new Scanner(System.in);
+		System.out.print("Parola che vuoi cercare: ");
+		
+		String filterWord = s.nextLine();
+		String pattern = "%" + filterWord + "%";
+		
 		try (Connection con = DriverManager.getConnection(url, user, pws)) {
 			
 			final String SQL = ""
@@ -26,9 +32,12 @@ public class Main {
 					+ " FROM `countries` "
 					+ " JOIN regions ON countries.region_id = regions.region_id "
 					+ " JOIN continents ON regions.continent_id = continents.continent_id "
+					+ " WHERE countries.name LIKE ? "
 					+ " ORDER BY countries.name ";
 			
 			try (PreparedStatement ps = con.prepareStatement(SQL)) {
+				
+				ps.setString(1, pattern);
 				
 				try (ResultSet rs = ps.executeQuery()) {
 					
